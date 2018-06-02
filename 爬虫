@@ -1,0 +1,15 @@
+#爬取京东链接
+#-*- coding: UTF-8 -*-
+import requests
+from bs4 import BeautifulSoup
+
+url = 'http://beijing.liebiao.com/'
+data = requests.get(url)
+#print(data.text)
+soup = BeautifulSoup(data.text,"html.parser")
+#print(soup)
+links = soup.select( " div.xb-box-1 > dl > dd > ul > li > a")
+#print(links)
+for i in links:
+    page_url = i.get('href')
+    print (page_url)
